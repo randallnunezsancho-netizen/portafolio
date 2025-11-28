@@ -109,7 +109,16 @@ elif selection == "Análisis":
 
 elif selection == "Optimización":
     st.header("Frontera Eficiente")
-    st.info("Módulo en construcción...")
+    
+    from src import optimization
+    
+    if st.session_state.get('data') is None:
+        st.warning("Por favor cargue los datos primero.")
+    elif st.session_state.get('config') is None:
+        st.warning("Por favor configure el portafolio primero.")
+    else:
+        optimization.render_optimization_section(st.session_state['data'], st.session_state['config'])
+
 
 elif selection == "Resultados":
     st.header("Resultados Finales")
